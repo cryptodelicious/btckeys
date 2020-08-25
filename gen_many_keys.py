@@ -17,9 +17,8 @@ def generate_keys():
     keysfile.close()
 
 def main():
+    print('Generating...')
     generate_keys()
+    print('Finished!')
 
 main()
-
-print('... finished!')
-

@@ -1,7 +1,7 @@
 from blockcypher import get_address_overview
 import json
 
-
+# Check for duplicate keys within file containing generated values
 def check_dupe_keys():
     keysfile_name = 'random_keys.txt'
     filehandler = open(keysfile_name, 'r')
@@ -18,11 +18,12 @@ def check_dupe_keys():
             all_pubs.append(pubaddr)
 
     if bad_execution:
-        print('we failed... sadness...')
+        print('We failed... duplicate found!... should not happen... sadness...')
     else:
         print('Everything is roses. No dupes. As expected.')
 
 
+# Check for any keys that may already exist on the bitcoin blockchain
 def check_exist_keys():
     badcount = 0
     # Read from file containing generated keys
@@ -44,19 +45,19 @@ def check_exist_keys():
                 print('nothing to see here... nada')
         except Exception as e:
             badcount += 1
-            print(e)
+            print('Error encountered... exiting...')
+            break
 
     print('Number of bad addresses = ' + str(badcount))
     filehandler.close()
 
 
+# Main function
 def main():
     print('Check for duplicate keys...')
     check_dupe_keys()
     print('Check for keys that already exist on blockchain...')
     check_exist_keys()
+    print('End of script. Finished. Done. Finito!')
 
 main()
-
-print('End of script. Finished. Done. Finito!')
-
